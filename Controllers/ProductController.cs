@@ -18,20 +18,26 @@ namespace Mvc2021.Controllers
 
         public IActionResult listing()
         {
-            Product newProduct = new Product { productID = 1, ProductName = "Toy Plane", Description = "This is a Toy Plane" };
-            Product newProduct2 = new Product { productID = 2, ProductName = "Toy Boat", Description = "This is a Toy Boat" };
-
-            List<Product> listOfproducts = new List<Product>();
-            listOfproducts.Add(newProduct);
-            listOfproducts.Add(newProduct2);
-
-            return View(listOfproducts);
+            return View(GetProducts());
         }
 
-        public IActionResult edit()
+        public IActionResult edit(int id)
         {
-            ViewBag.myPageTitle = "This is th edit page from a view bag";
-            return View();
+            Product findProduct = GetProducts().Where(x => x.productID == id).Single();
+            //List<Product> findProducts = GetProducts().Where(x => x.ProductName.Contains("toy")).ToList();
+
+            //Product findProduct = null;
+            //foreach(Product p in GetProducts())
+            //{
+            //    if (p.productID == id)
+            //    {
+            //        findProduct = p;
+            //        break;
+            //    }
+            //}
+
+            ViewBag.myPageTitle = $"This is the edit page from a view bag {id}";
+            return View(findProduct);
         }
 
         public IActionResult details()
@@ -45,9 +51,15 @@ namespace Mvc2021.Controllers
 
         private static List<Product> GetProducts()
         {
-            var products = new List<Product> { };
 
-            return products;
+            Product newProduct = new Product { productID = 1, ProductName = "Toy Plane", Description = "This is a Toy Plane" };
+            Product newProduct2 = new Product { productID = 2, ProductName = "Toy Boat", Description = "This is a Toy Boat" };
+
+            List<Product> listOfproducts = new List<Product>();
+            listOfproducts.Add(newProduct);
+            listOfproducts.Add(newProduct2);
+
+            return listOfproducts;
         }
     }
 }
