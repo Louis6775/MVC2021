@@ -1,0 +1,19 @@
+﻿@model Mvc2021.Models.Product
+@ViewBag.customMessage
+
+
+<table
+       class=" table">
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.productID)</td>
+        <td>@Html.DisplayFor(model => model.productID)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.ProductName)</td>
+        <td>@Html.DisplayFor(model => model.ProductName)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => model.Description)</td>
+        <td>@Html.DisplayFor(model => model.Description)</td>
+    </tr>
+</table>    
